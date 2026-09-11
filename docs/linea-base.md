@@ -3,7 +3,7 @@
 Ejecutar el workflow tres veces desde la pestana Actions, con **Run workflow**,
 sin modificar ningun archivo del repositorio. Registrar aqui los resultados.
 
-| Ejecucion | Duracion | URL |
+| Ejecucion | Duracion (job, validar) | URL |
 |---|---|---|
 | 1 | 57s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34502985174/job/102958102670](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34502985174/job/102958102670) |
 | 2 | 58s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503224087/job/102958883101](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503224087/job/102958883101) |
