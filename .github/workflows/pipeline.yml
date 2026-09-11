@@ -20,11 +20,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: requirements.lock
 
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.lock
 
       - name: Ejecutar pruebas
         run: pytest --cov=src --cov-report=xml
@@ -41,9 +43,15 @@ jobs:
             -Dsonar.qualitygate.wait=true
 
 
+      - name: Verificar quality gate
+        uses: SonarSource/sonarqube-quality-gate-action@v1
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   publicar:
     needs: validar
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    if: needs.validar.result == 'success' && github.ref == 'refs/heads/main'
     name: Publicar artefacto
     runs-on: ubuntu-latest
     steps:
@@ -54,11 +62,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: requirements.lock
 
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.lock
+
+      - name: Leer version
+        id: version
+        run: echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
 
       - name: Construir el paquete
         run: python -m build
@@ -66,6 +80,6 @@ jobs:
       - name: Publicar el paquete
         uses: actions/upload-artifact@v4
         with:
-          name: paquete
+          name: despachos-${{ steps.version.outputs.version }}
           path: dist/
           overwrite: true

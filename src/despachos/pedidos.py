@@ -80,3 +80,29 @@ def agrupar_por_cliente(pedidos: list[Pedido]) -> dict[str, list[Pedido]]:
 
 def pedidos_abiertos(pedidos: list[Pedido]) -> list[Pedido]:
     return [p for p in pedidos if not p.esta_cerrado()]
+
+def calcular_descuento_por_volumen(pedido: Pedido) -> float:
+    # Funcion para el ejercicio 3 final
+    if pedido.esta_cerrado():
+        return 0.0
+
+    unidades = pedido.unidades()
+    total = pedido.total()
+    descuento = 0.0
+
+    if unidades >= 50:
+        descuento = 0.15
+    elif unidades >= 20:
+        descuento = 0.10
+    elif unidades >= 10:
+        descuento = 0.05
+
+    if total > 5000:
+        descuento += 0.05
+    elif total > 2000:
+        descuento += 0.02
+
+    if descuento > 0.20:
+        descuento = 0.20
+
+    return round(total * descuento, 2)
