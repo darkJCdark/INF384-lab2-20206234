@@ -51,7 +51,7 @@ HECHO
 Tras aplicar la corrección de caché, se ejecutó el workflow tres veces en main sin modificar archivos, siguiendo el mismo procedimiento de la línea base. El job validar registró 56s, 1m2s y 54s, con un promedio de 57.3 segundos, frente al promedio base de 58.3 segundos (57s, 58s y 1m) medido antes de intervenir el pipeline.
 
 ### Linea base de ejecucion
-| Ejecucion | Duracion | URL |
+| Ejecucion | Duracion (jov, validar) | URL |
 |---|---|---|
 | 1 | 57s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34502985174](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34502985174/job/102958102670) |
 | 2 | 58s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503224087](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503224087/job/102958883101) |
