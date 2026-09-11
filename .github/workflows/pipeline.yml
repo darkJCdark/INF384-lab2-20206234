@@ -40,6 +40,8 @@ jobs:
           args: >
             -Dsonar.organization=${{ vars.SONAR_ORG }}
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+            -Dsonar.qualitygate.wait=true
+
 
       - name: Verificar quality gate
         uses: SonarSource/sonarqube-quality-gate-action@v1
