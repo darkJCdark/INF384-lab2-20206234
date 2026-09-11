@@ -5,9 +5,9 @@ sin modificar ningun archivo del repositorio. Registrar aqui los resultados.
 
 | Ejecucion | Duracion | URL |
 |---|---|---|
-| 1 | 1m 4s | https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34502985174 |
-| 2 | 1m 3s | https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503224087 |
-| 3 | 1m 6s | https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503345649 |
+| 1 | 57s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34502985174](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34502985174/job/102958102670) |
+| 2 | 58s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503224087](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34503224087/job/102958883101) |
+| 3 | 1m | [https://github.com/darkJCdark/INF384-lab2
 
 ## Declaracion de uso de IA generativa
 
