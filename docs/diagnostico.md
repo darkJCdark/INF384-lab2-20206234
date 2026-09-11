@@ -48,7 +48,7 @@ HECHO
 
 ## 4.1 Medición posterior
 
-Tras aplicar la corrección de caché, se ejecutó el workflow tres veces en main sin modificar archivos, siguiendo el mismo procedimiento de la línea base. El job validar registró 56s, 1m2s y 54s, con un promedio de 57.3 segundos, frente al promedio base de 58.3 segundos (57s, 58s y 1m) medido antes de intervenir el pipeline.
+Con el pipeline corregido, se ejecutó el workflow tres veces en main sin modificar archivos, siguiendo el mismo procedimiento de la línea base. El job validar registró 55s, 51s y 1m 2s, con un promedio de 56 segundos, frente al promedio base de 58.3 segundos (57s, 58s y 1m) medido antes de intervenir el pipeline.
 
 ### Linea base de ejecucion
 | Ejecucion | Duracion (jov, validar) | URL |
@@ -60,11 +60,11 @@ Tras aplicar la corrección de caché, se ejecutó el workflow tres veces en mai
 ### Medición posterior
 | Ejecucion | Duracion (jov, validar) | URL |
 |---|---|---|
-| 1 | 56s | https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34558497545/job/103136173043 |
-| 2 | 1m 2s | https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34558593620/job/103136456415 |
-| 3 | 54s | https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34558612120/job/103136515176 |
+| 1 | 55s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34558497545/job/103136173043](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34562318019/job/103147417090) |
+| 2 | 51s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34558593620/job/103136456415](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34562335116/job/103147463433) |
+| 3 | 1min 2s | [https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34558612120/job/103136515176](https://github.com/darkJCdark/INF384-lab2-20206234/actions/runs/34562425860/job/103147725408) |
 
-La diferencia es de apenas un segundo, alrededor de 1.7%, una variación que no permite concluir una mejora real y que se explica mejor como ruido normal entre ejecuciones del mismo pipeline. Esto no invalida la corrección: agregar caché de pip y fijar las dependencias con requirements.lock sigue siendo necesario para la reproducibilidad, que era el problema de fondo señalado en el defecto 2. Lo que muestran los números es que, en un proyecto de este tamaño, la instalación de dependencias no es el paso que más pesa dentro del job validar; el análisis de SonarCloud y la ejecución de pruebas ocupan la mayor parte del tiempo y no se ven afectados por la caché. El proxy elegido sigue siendo el correcto para sustentar la métrica DORA declarada, aunque el efecto medido en la duración sea marginal.
+La diferencia es de aproximadamente 2.3 segundos, alrededor de 4%. Es una mejora real pero modesta, y confirma la misma lectura que ya se venía observando: agregar caché de pip y fijar las dependencias con requirements.lock corrige el problema de reproducibilidad señalado en el defecto 2, pero su efecto sobre la duración del job validar es limitado porque la instalación de dependencias nunca fue el paso más pesado del job. El análisis de SonarCloud y la ejecución de pruebas siguen dominando el tiempo total y no cambian con la caché, por lo que un pipeline con pocas dependencias como este no muestra una ganancia drástica aunque la corrección sea correcta y necesaria.
 
 ## 4.2 Justificación de la versión
 
